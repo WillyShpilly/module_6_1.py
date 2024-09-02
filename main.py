@@ -1,41 +1,39 @@
-class Animal: #класс родитель для зверушек
-    def __init__(self, name):
-        self.alive = True
-        self.fed = False
-        self.name = name
+class Animal:#класс родитель для зверушек
+    alive = True
+    fed = False
 
     def eat(self, food):
-        if isinstance(food, Plant):
-            if food.edible:
-                print(f"{self.name} съел {food.name}")
-                self.fed = True
-            else:
-                print(f"{self.name} не стал есть {food.name}")
-                self.alive = False
+        if food.edible == True:
+            print(f"{self.name} съел {food.name}")
+            self.fed = True
         else:
-            print(f"{food.name} не является растением. {self.name} не может это съесть.")
+            print(f"{self.name} не стал есть {food.name}")
+            self.alive = False
+
 
 class Plant:#клас родитель для растений
-    def __init__(self, name, edible=False):
-        self.edible = edible
+    edible = False
+
+    def __init__(self, name):
         self.name = name
 
 
 class Mammal(Animal):#млекопитающие-класс наследник зверушек
-    pass
+    def __init__(self, name):
+        self.name = name
+
 
 class Predator(Animal):#хищники-класс наследник зверушек
-    pass
+    def __init__(self, name):
+        self.name = name
 
 
 class Flower(Plant):#цветы-класс наследник растений
-    def __init__(self, name):
-        super().__init__(name, edible=False)
+    pass
 
 
 class Fruit(Plant):#фрукты-класс наследний растений
-    def __init__(self, name):
-        super().__init__(name, edible=True)
+    edible = True
 
 
 a1 = Predator('Волк с Уолл-Стрит')
